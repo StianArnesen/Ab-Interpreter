@@ -1,0 +1,40 @@
+function Main()
+{
+	int: CONSTANT_NUMBER = 25;
+	int: counter = 0;
+	Console.out.error("Starting counter...");
+	
+	run CountDown();
+}
+function CountDown()
+{
+	counter += CONSTANT_NUMBER;
+	
+	run CheckStatus_1000();
+	if (counter < 1000000) -> CountDown() : EndApplication();
+	
+}
+function CheckStatus_1000()
+{
+	if (counter < 1000) -> CountDown() : CheckStatus_10000();
+}
+function CheckStatus_10000()
+{
+	Console.out.warning(counter);
+	if (counter < 1000000) -> CountDown() : CheckStatus_100000();
+}
+function CheckStatus_100000()
+{
+	Console.out.warning(counter);
+	if (counter < 1000000) -> CountDown() : CheckStatus_1000000();
+}
+function CheckStatus_1000000()
+{
+	Console.out.warning(counter);
+	if (counter < 1000000) -> CountDown() : CheckStatus_1000000();
+}
+function EndApplication()
+{
+	Console.out.info(counter);
+	Console.out.error("End of application!");
+}

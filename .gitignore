@@ -1,0 +1,10 @@
+file_to_ignore.txt
+AInterpreter.sln
+AInterpreter.csproj
+
+# Ignore entire directories
+ignored_directory/
+syntax/
+obj/
+logs/
+bin/
