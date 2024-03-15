@@ -1,3 +1,0 @@
-PROGRAM START
-Nå kommer det mye spam :)
-in Setup()
