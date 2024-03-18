@@ -1,5 +1,6 @@
 ﻿using AInterpreter.Core.Runtime;
 using AInterpreter.Core.Logger;
+using System.Diagnostics;
 
 namespace AInterpreter
 {
@@ -11,7 +12,7 @@ namespace AInterpreter
         {
             FileInfo fileToInterpret = new FileInfo("C:/Users/stian/OneDrive/Documents/C_Sharp_projects/AInterpreter/A-Flat Projects/hello_world/hello_world.Ab");
             
-            this.program = new DefaultProgram();
+            this.program = new Program();
             new Interpreter.Interpreter(fileToInterpret, program.ProgramMemory);
 
             this.runProgram();
@@ -32,16 +33,23 @@ namespace AInterpreter
         }
         private void runProgram()
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
+            Stopwatch executionTimer = Stopwatch.StartNew();
             
-            while(program.IsRunning)
+            try
             {
-                program.Execute();
+                while(program.IsRunning)
+                {
+                    program.Execute();   
+                }
             }
-           
-            watch.Stop();
-            var elapsedMs = watch.ElapsedMilliseconds;
-            Console.WriteLine($"Elapsed Time: {elapsedMs} ms");
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            executionTimer.Stop();
+            var elapsedMs = executionTimer.ElapsedMilliseconds;
+            Console.WriteLine($"Execution complete!  Execution took: {elapsedMs} ms");
         }
         
     }

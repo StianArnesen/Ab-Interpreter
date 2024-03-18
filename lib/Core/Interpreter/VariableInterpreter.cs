@@ -32,56 +32,62 @@ namespace AInterpreter.Interpreter
             program.AddInstructionToCurrentFunction(instruction);
         }
 
-        private static Instruction GetInstructionSetForVariableModifier(ProgramMemory program, string line)
+        private static Instruction GetInstructionSetForVariableModifier(ProgramMemory programMemory, string line)
         {
             int varNameLength   = line.IndexOf(GlobalSignatures.OPERATOR_EQUALS) - 1;
             string variableName = line.Trim().Substring(0, varNameLength);
-            int variableValue   = getVariableIntegerValue(line);
+            int variableValue   = getVariableIntegerValue(programMemory, line);
             
-            return new Instruction(program, () =>{program.VariableController.SetVariable(variableName, variableValue);});            
+            return new Instruction(programMemory, () =>{programMemory.VariableController.SetVariable(variableName, variableValue);});            
         }
 
-        private static Instruction GetInstructionSetForIntegerInitializer(ProgramMemory program, string line)
+        private static Instruction GetInstructionSetForIntegerInitializer(ProgramMemory programMemory, string line)
         {            
-            string variableName    = GetVariableName(line);
+            string variableName = GetVariableName(programMemory, line);
 
-            int variableValue = getVariableIntegerValue(line);
+            int variableValue = getVariableIntegerValue(programMemory, line);
             
-            return new Instruction(program, () =>{program.VariableController.AddVariable(variableName, variableValue);});
+            return new Instruction(programMemory, () =>{programMemory.VariableController.AddVariable(variableName, variableValue);});
         }
 
-        private static int getVariableIntegerValue(string line)
+        private static int getVariableIntegerValue(ProgramMemory programMemory, string line)
         {
             string noSpace = new StringHelper(line).RemoveWhiteSpace();
+            
             int variableValueIndexStart = noSpace.IndexOf(GlobalSignatures.OPERATOR_EQUALS) + 1;
             int variableValueLength     = noSpace.IndexOf(GlobalSignatures.END_OF_LINE) - variableValueIndexStart;
             string stringValue          = noSpace.Substring(variableValueIndexStart, variableValueLength);
-
-            int integerValue   = int.Parse(stringValue);
+            
+            int integerValue;
+            if(! int.TryParse(stringValue, out integerValue))
+            {
+                throw new InvalidSyntaxException($"Cannot convert string: '{stringValue}' to integer!", programMemory.CurrentLineNumber);
+            }
 
             return integerValue;
         }
 
         private static string getVariableStringValue(string line)
         {
-            int variableValueIndexStart = line.Trim().IndexOf(GlobalSignatures.OPERATOR_EQUALS) + 3;
-            int variableValueLength     = line.Trim().IndexOf(GlobalSignatures.END_OF_LINE) - variableValueIndexStart -1;
+            line = line.Trim();
+            int variableValueIndexStart = line.IndexOf(GlobalSignatures.OPERATOR_EQUALS) + 3;
+            int variableValueLength     = line.IndexOf(GlobalSignatures.END_OF_LINE) - variableValueIndexStart -1;
 
-            string stringValue   = line.Trim().Substring(variableValueIndexStart, variableValueLength);
+            string stringValue   = line.Substring(variableValueIndexStart, variableValueLength);
 
             return stringValue;
         }
 
-        public static Instruction GetInstructionSetForStringInitializer(ProgramMemory program, string line)
+        public static Instruction GetInstructionSetForStringInitializer(ProgramMemory programMemory, string line)
         {
-            string variableName = GetVariableName(line);
+            string variableName = GetVariableName(programMemory, line);
             
             string variableValue = getVariableStringValue(line);
             
-            return new Instruction(program, () =>{program.VariableController.AddVariable(variableName, variableValue);});
+            return new Instruction(programMemory, () =>{programMemory.VariableController.AddVariable(variableName, variableValue);});
         }
         
-        public static string GetVariableName(string line, string? startOfNameChar = VariableSignatures.END_OF_VARIABLE_TYPE_CHAR, string endOfNameChar = GlobalSignatures.OPERATOR_EQUALS)
+        public static string GetVariableName(ProgramMemory programMemory, string line, string? startOfNameChar = VariableSignatures.END_OF_VARIABLE_TYPE_CHAR, string endOfNameChar = GlobalSignatures.OPERATOR_EQUALS)
         {
             string noSpace = new StringHelper(line).RemoveWhiteSpace();
             
@@ -90,7 +96,7 @@ namespace AInterpreter.Interpreter
             
             if(variableNameIndexStart < 0)
             {
-                throw new InvalidSyntaxException("Excpected ':' after type definition!");
+                throw new InvalidSyntaxException("Excpected ':' after type definition!", programMemory.CurrentLineNumber);
             }
 
             string variableName    = noSpace.Substring(variableNameIndexStart, variableNameLength);

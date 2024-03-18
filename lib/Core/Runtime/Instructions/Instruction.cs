@@ -5,6 +5,7 @@
 */
 
 using System.Diagnostics;
+using System.Reflection;
 using AInterpreter.Core.Logger;
 
 namespace AInterpreter.Core.Runtime
@@ -24,6 +25,10 @@ namespace AInterpreter.Core.Runtime
         {
             DebugLog.Log($"Executing instruction at line {LineNumber}", this);
             instruction();
+        }
+        public string GetInstructionInfo()
+        {
+            return $"At line {LineNumber} action = {instruction.GetMethodInfo()} From {instruction.Target}";
         }
     }
 }

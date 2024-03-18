@@ -16,7 +16,21 @@ namespace AInterpreter.Core.Runtime
 
         public virtual void Execute()
         {
+            if(this.ProgramMemory.IsFirstTimeRunning)
+            {
+                ProgramMemory.AddFunctionToExecutionStack(ProgramMemory.GetFunctionByName(FunctionSignatures.FUNCTION_ENTRY_NAME));
+                this.ProgramMemory.IsFirstTimeRunning = false;
+            }
+            if(ProgramMemory.IsEndOfApplication)
+            {
+                IsRunning = false;
+                return;
+            }
             
+            Instruction? instruction = ProgramMemory.InstructionStack.Pop();
+            instruction.Execute();
+
+            ProgramMemory.CurrentLineNumber = instruction.LineNumber;
         }
        
     }

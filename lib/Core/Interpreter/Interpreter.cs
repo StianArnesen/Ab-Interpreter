@@ -3,6 +3,7 @@ using AInterpreter.Core.Runtime;
 using AInterpreter.Core.Logger;
 using AInterpreter.Core.Signatures;
 using AInterpreter.Core.Runtime.Commands;
+using System.Diagnostics;
 
 namespace AInterpreter.Interpreter
 {
@@ -13,10 +14,27 @@ namespace AInterpreter.Interpreter
         
         public Interpreter(FileInfo fileToInterpret, ProgramMemory programMemory)
         {
+            DebugLog.Log($"---------------- Interpreting '{fileToInterpret.Name} ' -----------------", this);
+
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            
+            interpretFile(fileToInterpret, programMemory);
+            
+            stopwatch.Stop();
+            long elapsedTime = stopwatch.ElapsedMilliseconds;
+            
+            DebugLog.Log("---------------- Interpreting done! -----------------", this);
+            DebugLog.Log($"              Interpreting took {elapsedTime} ms     ", this);
+            DebugLog.Log("---------------- Interpreting done! -----------------", this);
+        }
+
+        private void interpretFile(FileInfo fileToInterpret, ProgramMemory programMemory)
+        {
             string[] codeLines = FileHandler.GetLinesFromFile(fileToInterpret.FullName);
 
             FunctionInterpreter.InterpretAllFunctionDefinitionSignatures(codeLines, programMemory);
-            this.interpretLines(codeLines, programMemory);
+            interpretLines(codeLines, programMemory);
         }
 
         public void AddFunction(Function function)
@@ -43,7 +61,7 @@ namespace AInterpreter.Interpreter
                 CurrentLineNumber++;
                 programMemory.CurrentLineNumber++;
             }
-        }        
+        }
 
         private void interpretLine(string line, ProgramMemory programMemory)
         {

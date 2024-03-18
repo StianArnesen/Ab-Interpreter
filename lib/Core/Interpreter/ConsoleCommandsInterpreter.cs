@@ -31,15 +31,15 @@ namespace AInterpreter.Interpreter
                     {
                         case ConsoleSignatures.CONSOLE_COMMAND_OUTPUT_INFO:
                         {
-                            return getInstructionSetFromOutFunction(program, line, ConsoleConfiguration.CONSOLE_COLOR_WARNING);
+                            return getInstructionSetForOutFunction(program, line, ConsoleConfiguration.CONSOLE_COLOR_WARNING);
                         }
                         case ConsoleSignatures.CONSOLE_COMMAND_OUTPUT_WARNING:
                         {
-                            return getInstructionSetFromOutFunction(program, line, ConsoleConfiguration.CONSOLE_COLOR_WARNING);
+                            return getInstructionSetForOutFunction(program, line, ConsoleConfiguration.CONSOLE_COLOR_WARNING);
                         }
                         case ConsoleSignatures.CONSOLE_COMMAND_OUTPUT_ERROR:
                         {
-                            return getInstructionSetFromOutFunction(program, line, ConsoleConfiguration.CONSOLE_COLOR_ERROR);
+                            return getInstructionSetForOutFunction(program, line, ConsoleConfiguration.CONSOLE_COLOR_ERROR);
                         }
                         case ConsoleSignatures.CONSOLE_COMMAND_CLEAR_OUTPUT:
                         {
@@ -47,7 +47,7 @@ namespace AInterpreter.Interpreter
                         }
                         default:
                         {
-                            throw new InvalidSyntaxException($"Could not find any suitable console instructions from: {line} ||| @ Line [{program.CurrentLineNumber}]");
+                            throw new InvalidSyntaxException($"Could not find any suitable console instructions from: {line}", program.CurrentLineNumber);
                         }
                     }
                 }
@@ -57,7 +57,7 @@ namespace AInterpreter.Interpreter
                 }
 
             }
-            throw new InvalidSyntaxException($"Could not find any suitable console instructions from: {line} ||| @ Line [{program.CurrentLineNumber}]");
+            throw new InvalidSyntaxException($"Could not find any suitable console instructions from: {line}", program.CurrentLineNumber);
         }
         
         private static string getSystemFunctionNameFromLine(string line)
@@ -65,7 +65,7 @@ namespace AInterpreter.Interpreter
             return new StringHelper(line).FromStartToNextCharacter('.');
         }
 
-        private static Instruction getInstructionSetFromOutFunction(ProgramMemory program, string line, ConsoleColor consoleColor = ConsoleColor.White)
+        private static Instruction getInstructionSetForOutFunction(ProgramMemory program, string line, ConsoleColor consoleColor = ConsoleColor.White)
         {
             /* Check if print statement is pure string or variable */
             string betweenParentheses = new StringHelper(line).GetSubstringBetweenChars('(', ')');
@@ -78,7 +78,7 @@ namespace AInterpreter.Interpreter
             }
             
             /* A variable reference is assumed since the string did not contain any string markers. */
-            return new Instruction(program, () => ConsoleCommands.PrintToConsole(program.VariableController.GetVariable(variableName).Value.ToString(), consoleColor));
+            return new Instruction(program, () => ConsoleCommands.PrintToConsole(program.VariableController.GetVariable(variableName).GetValuesToString(), consoleColor));
         }
         private static string getConsoleCommandOutputType(string line)
         {

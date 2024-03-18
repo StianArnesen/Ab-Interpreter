@@ -7,7 +7,7 @@ namespace AInterpreter.Exceptions
         // Default constructor
 
         // Constructor with a custom error message
-        public EmptyInstructionSet(string message) : base(message) { }
+        public EmptyInstructionSet(string message, int lineNumber) : base(message, lineNumber) { }
 
         // Constructor with a custom error message and inner exception
         public EmptyInstructionSet(string message, System.Exception innerException) : base(message, innerException) { }

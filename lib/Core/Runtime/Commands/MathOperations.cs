@@ -6,8 +6,8 @@ namespace AInterpreter.Core.Runtime.Commands
         {
             return new Action(() => 
             {
-                int leftHandValue = int.Parse(programMemory.VariableController.GetVariable(leftHandVariableName).Value.ToString());
-                int rightHandValue = int.Parse(programMemory.VariableController.GetVariable(rightHandVariableName).Value.ToString());
+                int leftHandValue = programMemory.VariableController.GetVariable(leftHandVariableName).GetIntValue();
+                int rightHandValue = programMemory.VariableController.GetVariable(rightHandVariableName).GetIntValue();
                 int result = leftHandValue + rightHandValue;
                 
                 programMemory.VariableController.SetVariable(leftHandVariableName, result);

@@ -1,40 +1,33 @@
 function Main()
 {
-	int: CONSTANT_NUMBER = 25;
-	int: counter = 0;
-	Console.out.error("Starting counter...");
+	int: testerVariabelIStartFunksjon = 10;
+	run VariableSetup();
+	run StartCounter();
+}
+
+function VariableSetup()
+{
+	int: ADD = 1;
+	int: Counter = 0;
+	int: MAX_COUNT = 20;
+	string: testVar = "Tester variabel definisjon i annen funksjon!";
+	Console.out.info("variableSetup complete!");
+}
 	
-	run CountDown();
-}
-function CountDown()
+function StartCounter()
 {
-	counter += CONSTANT_NUMBER;
+	Console.out.info("Starting counter!");
+	run Count();
+}
 	
-	run CheckStatus_1000();
-	if (counter < 1000000) -> CountDown() : EndApplication();
-	
-}
-function CheckStatus_1000()
+function Count()	
 {
-	if (counter < 1000) -> CountDown() : CheckStatus_10000();
+	Counter += ADD;
+	Console.out.info(Counter);
+	if (Counter < MAX_COUNT) -> Count() : End();
 }
-function CheckStatus_10000()
+
+function End()
 {
-	Console.out.warning(counter);
-	if (counter < 1000000) -> CountDown() : CheckStatus_100000();
-}
-function CheckStatus_100000()
-{
-	Console.out.warning(counter);
-	if (counter < 1000000) -> CountDown() : CheckStatus_1000000();
-}
-function CheckStatus_1000000()
-{
-	Console.out.warning(counter);
-	if (counter < 1000000) -> CountDown() : CheckStatus_1000000();
-}
-function EndApplication()
-{
-	Console.out.info(counter);
-	Console.out.error("End of application!");
+	Console.out.error("End of application -- PROGRAM!");
 }

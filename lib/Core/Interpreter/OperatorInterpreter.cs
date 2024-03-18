@@ -10,7 +10,7 @@ namespace AInterpreter.Interpreter
         public static void InterpretOperatorLine(ProgramMemory programMemory, string line)
         {
             string operatorType = GetOperatorType(line);
-            string leftHandVariableName  = VariableInterpreter.GetVariableName(line, null, operatorType);            
+            string leftHandVariableName  = VariableInterpreter.GetVariableName(programMemory, line, null, operatorType);            
             string rightHandVariableName = new StringHelper(line).GetSubstringBetweenIndentifiers(operatorType, GlobalSignatures.END_OF_LINE);            
             
 

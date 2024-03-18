@@ -38,17 +38,17 @@ namespace AInterpreter.Interpreter
         {
             string functionName = GetFunctionName(line, FunctionSignatures.FUNCTION_EXECUTION_SIGNATURE);
             
-            programMemory.AddInstructionsToCurrentFunction(getInstructionsForFunctionExecutionParams(programMemory, line, programMemory.GetFunctionByName(functionName)));
+            //programMemory.AddInstructionsToCurrentFunction(getInstructionsForFunctionExecutionParams(programMemory, line, programMemory.GetFunctionByName(functionName)));
             
             programMemory.AddInstructionToCurrentFunction(new Instruction(programMemory, () => {
-                Function function = programMemory.GetFunctionByName(functionName);
-                programMemory.AddFunctionToExecutionStack(function);
+                programMemory.addInstructionsFromFunctionToExecutionStack(functionName);
             }));
         }
         
         public static void InterpretReturnSignature(ProgramMemory programMemory, string line)
         {
            // TODO: Implement return signature.
+           throw new NotImplementedException("Return signature not implemented yet and should not be needed.");
         }
 
         private static Function GetFunctionToCreate(string line)
@@ -73,7 +73,7 @@ namespace AInterpreter.Interpreter
             }
         }
         
-        private static List<Instruction> getInstructionsForFunctionExecutionParams(ProgramMemory programMemory, string line, Function function)
+        /*private static List<Instruction> getInstructionsForFunctionExecutionParams(ProgramMemory programMemory, string line, Function function)
         {
             List<Instruction> instructions = new List<Instruction>(); // The instructions to return.
 
@@ -108,7 +108,7 @@ namespace AInterpreter.Interpreter
                     program.VariableController.SetVariable(parameterVariableName, parameter);
                 });
         }
-        
+        */
         private static Instruction getInstructionToSetParameterToValue(ProgramMemory program, string parameterName, object value, Function function){
             return new Instruction(program, () => {
                     Variable parameter = function.GetParameter(0);

@@ -33,14 +33,15 @@ namespace AInterpreter.Core.Logger
                     Console.ForegroundColor = ConsoleColor.White;
                     break;
             }
+            
             if(IsConsoleOutputEnabled)
             {
                 Console.WriteLine($"[{logType}]: {finalMessageToPrint}");
             }
-            if(IsFileLoggerEnabled){
+            if(IsFileLoggerEnabled)
+            {
                 FileHandler.WriteToLog($"\n[{currentTime}]:      {finalMessageToPrint}");;
-            }
-            
+            }            
         }
         
         public static void Log(string message, object source)

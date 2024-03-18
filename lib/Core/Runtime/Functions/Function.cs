@@ -12,7 +12,7 @@ namespace AInterpreter.Core.Runtime
 
         public Function(string name)
         {
-            this.Name    = name;
+            this.Name = name;
             this.instructionList = new List<Instruction>();
         }
         public Function(string name, List<Variable> parameters)
@@ -20,6 +20,13 @@ namespace AInterpreter.Core.Runtime
             this.Name = name;
             this.parameters = parameters;
             this.instructionList = new List<Instruction>();
+        }
+        public List<Instruction> GetInstructions()
+        {
+            List<Instruction> reversedList = new List<Instruction>(instructionList);
+            reversedList.Reverse();
+            
+            return reversedList;
         }
 
         public Variable GetParameter(string parameterName)
@@ -59,7 +66,7 @@ namespace AInterpreter.Core.Runtime
             {
                 if (param.VariableName == parameterName)
                 {
-                    param.Value = parameter.Value;
+                    param.SetValue(parameter.GetIntValue());
                     return;
                 }
             }
@@ -76,7 +83,7 @@ namespace AInterpreter.Core.Runtime
             parameters[index] = parameter;
             string paramName = parameters[index].VariableName;
 
-            DebugLog.Log($"Set parameter '{paramName}'[Index: {index}] to '{parameter.Value}' for function: '{this.Name}'", this);
+            DebugLog.Log($"Set parameter '{paramName}'[Index: {index}] to '{parameter.GetValuesToString()}' for function: '{this.Name}'", this);
         }
 
         public void AddParameter(Variable parameter)
