@@ -43,6 +43,18 @@ namespace AInterpreter.Core.Logger
                 FileHandler.WriteToLog($"\n[{currentTime}]:      {finalMessageToPrint}");;
             }            
         }
+
+        public static void AddEmptyLine()
+        {
+            if(IsConsoleOutputEnabled)
+            {
+                Console.WriteLine();
+            }
+            if(IsFileLoggerEnabled)
+            {
+                FileHandler.WriteToLog(" ");;
+            }  
+        }
         
         public static void Log(string message, object source)
         {

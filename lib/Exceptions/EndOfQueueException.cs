@@ -1,16 +1,10 @@
-using System;
-
 namespace AInterpreter.Exceptions
 {
-    public class EndOfQueueException : System.Exception
+    public class EndOfQueueException : AbException
     {
-        // Default constructor
-        public EndOfQueueException() { }
+        public EndOfQueueException(string message, object source) : base(message, source) { }
+        public EndOfQueueException(string message, int lineNumber) : base(message, lineNumber) { }
 
-        // Constructor with a custom error message
-        public EndOfQueueException(string message) : base(message) { }
-
-        // Constructor with a custom error message and inner exception
-        public EndOfQueueException(string message, System.Exception innerException) : base(message, innerException) { }
+        public EndOfQueueException(string message, int lineNumber, Exception innerException) : base(message, lineNumber, innerException) { }
     }
 }

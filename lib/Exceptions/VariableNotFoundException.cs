@@ -1,16 +1,11 @@
-using System;
-
 namespace AInterpreter.Exceptions
 {
-    public class VariableNotFoundException : System.Exception
+    public class VariableNotFoundException : AbException
     {
-        // Default constructor
-        public VariableNotFoundException() { }
-
-        // Constructor with a custom error message
         public VariableNotFoundException(string message) : base(message) { }
+        public VariableNotFoundException(string message, object source) : base(message, source) { }
+        public VariableNotFoundException(string message, int lineNumber) : base(message, lineNumber) { }
 
-        // Constructor with a custom error message and inner exception
-        public VariableNotFoundException(string message, System.Exception innerException) : base(message, innerException) { }
+        public VariableNotFoundException(string message, int lineNumber , Exception innerException) : base(message, lineNumber, innerException) { }
     }
 }

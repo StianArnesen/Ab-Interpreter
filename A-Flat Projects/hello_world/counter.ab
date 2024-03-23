@@ -1,9 +1,0 @@
-function main()
-	string: testVariabel = "Tester funksjoner";
-	Console.out("Hello World!");
-	Console.out(testVariabel);
-	
-function MaiYallah()
-	string: scopedVariable = "Yallah";
-	Console.out("Her kommer yallah!");
-	Console.out(scopedVariable);

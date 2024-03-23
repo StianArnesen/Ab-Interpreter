@@ -29,7 +29,7 @@ namespace AInterpreter.Core.Runtime
                 }
             }
             DebugLog.Log($"Could not find variable '{variableName}' | Throwing VariableNotFoundException!", DebugLog.LogType.ERROR);
-            throw new VariableNotFoundException($"Could not find variable '{variableName}'");
+            throw new VariableNotFoundException($"Could not find variable '{variableName}'", this);
         }
 
         // Add a new integer variable to the memory

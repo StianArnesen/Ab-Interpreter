@@ -1,16 +1,9 @@
-using System;
-
 namespace AInterpreter.Exceptions
 {
-    public class InvalidInstruction : System.Exception
+    public class InvalidInstruction : AbException
     {
-        // Default constructor
-        public InvalidInstruction() { }
+        public InvalidInstruction(string message, int lineNumber) : base(message,lineNumber) { }
 
-        // Constructor with a custom error message
-        public InvalidInstruction(string message) : base(message) { }
-
-        // Constructor with a custom error message and inner exception
-        public InvalidInstruction(string message, System.Exception innerException) : base(message, innerException) { }
+        public InvalidInstruction(string message, int lineNumber, Exception innerException) : base(message, lineNumber, innerException) { }
     }
 }

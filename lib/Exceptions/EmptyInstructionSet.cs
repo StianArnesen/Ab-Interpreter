@@ -1,15 +1,9 @@
-using System;
-
 namespace AInterpreter.Exceptions
 {
-    public class EmptyInstructionSet :AException
+    public class EmptyInstructionSet :AbException
     {
-        // Default constructor
-
-        // Constructor with a custom error message
         public EmptyInstructionSet(string message, int lineNumber) : base(message, lineNumber) { }
 
-        // Constructor with a custom error message and inner exception
-        public EmptyInstructionSet(string message, System.Exception innerException) : base(message, innerException) { }
+        public EmptyInstructionSet(string message, int lineNumber, Exception innerException) : base(message, lineNumber, innerException) { }
     }
 }

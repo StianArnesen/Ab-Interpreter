@@ -34,7 +34,7 @@ namespace AInterpreter.Core.Runtime
             if (parameters == null)
             {
                 DebugLog.Log($"No parameters named '{parameterName}' found for function: '{this.Name}'! This function has no parameters!", DebugLog.LogType.ERROR);
-                throw new VariableNotFoundException($"No parameters named '{parameterName}' found for function: '{this.Name}'!");    
+                throw new VariableNotFoundException($"No parameters named '{parameterName}' found for function: '{this.Name}'!", this);
             }
             foreach (Variable parameter in parameters)
             {
@@ -44,7 +44,7 @@ namespace AInterpreter.Core.Runtime
                 }
             }
             DebugLog.Log($"No parameters named '{parameterName}' found for function: '{this.Name}'!", DebugLog.LogType.ERROR);
-            throw new VariableNotFoundException($"No parameters named '{parameterName}' found for function: '{this.Name}'!");
+            throw new VariableNotFoundException($"No parameters named '{parameterName}' found for function: '{this.Name}'!", this);
         }
 
         public Variable GetParameter(int parameterIndex)

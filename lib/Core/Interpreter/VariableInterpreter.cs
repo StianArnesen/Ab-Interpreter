@@ -70,10 +70,11 @@ namespace AInterpreter.Interpreter
         private static string getVariableStringValue(string line)
         {
             line = line.Trim();
+            
             int variableValueIndexStart = line.IndexOf(GlobalSignatures.OPERATOR_EQUALS) + 3;
             int variableValueLength     = line.IndexOf(GlobalSignatures.END_OF_LINE) - variableValueIndexStart -1;
 
-            string stringValue   = line.Substring(variableValueIndexStart, variableValueLength);
+            string stringValue = line.Substring(variableValueIndexStart, variableValueLength);
 
             return stringValue;
         }

@@ -1,6 +1,4 @@
-using System.Runtime.Serialization;
 using AInterpreter.Core.Logger;
-using AInterpreter.Core.Signatures;
 using AInterpreter.Exceptions;
 
 namespace AInterpreter.Core.Runtime
@@ -10,7 +8,7 @@ namespace AInterpreter.Core.Runtime
         public List<Function> functionList = new List<Function>(); // Contains list of functions which contains instructions to execute if added to execution stack.
         public VariableController VariableController = new VariableController();
         public Stack<Instruction> InstructionStack = new Stack<Instruction>(); // Used to store functions that are currently being executed.'
-        
+
         public int CurrentLineNumber {get; set;} = 1;
         public bool IsFirstTimeRunning = true;
         public bool IsEndOfApplication {get; private set;} = false;
@@ -20,11 +18,18 @@ namespace AInterpreter.Core.Runtime
         {
             
         }
-        public void EndApplication(object source)
+
+        public Instruction? NextInstruction()
         {
-            DebugLog.Log("End of application!", this);
-            IsEndOfApplication = true;
+            if(InstructionStack.Count < 1)
+            {
+                DebugLog.Log("No more instructions. Ending application.", DebugLog.LogType.WARNING, this);
+                IsEndOfApplication = true;
+                return null;
+            }
+            return InstructionStack.Pop();
         }
+
         public void SetCurrentFunctionName(string name)
         {
             DebugLog.Log($"Setting current function to: {name}", this);
@@ -47,15 +52,6 @@ namespace AInterpreter.Core.Runtime
             return GetFunctionByName(CurrentFunctionName);
         }
 
-        public void RemoveCurrentFunction()
-        {
-            Function? currentFunction = GetCurrentFunction();
-            if (currentFunction != null)
-            {
-                functionList.Remove(currentFunction);
-            }
-        }
-
         public void AddFunction(Function function)
         {
             if(doesFunctionExist(function.Name))
@@ -73,7 +69,7 @@ namespace AInterpreter.Core.Runtime
             if(functionList.Count < 1)
             {
                 DebugLog.Log("Could not find function! FunctionList is empty!", DebugLog.LogType.ERROR);
-                throw new EndOfQueueException("End of application");
+                throw new EndOfQueueException("End of application", this);
             }
             foreach (Function func in functionList)
             {

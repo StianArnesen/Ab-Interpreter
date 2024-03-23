@@ -1,15 +1,9 @@
-using System;
-
 namespace AInterpreter.Exceptions
 {
-    public class InvalidSyntaxException : AException
+    public class InvalidSyntaxException : AbException
     {
-        // Default constructor
-
-        // Constructor with a custom error message
         public InvalidSyntaxException(string message, int lineNumber) : base(message, lineNumber) { }
 
-        // Constructor with a custom error message and inner exception
-        public InvalidSyntaxException(string message, System.Exception innerException) : base(message, innerException) { }
+        public InvalidSyntaxException(string message, int lineNumber, Exception innerException) : base(message, lineNumber, innerException) { }
     }
 }

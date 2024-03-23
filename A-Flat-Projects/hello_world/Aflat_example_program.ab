@@ -1,0 +1,39 @@
+function Main()
+{
+	run VariableSetup();
+	run StartCounter();
+}
+
+function VariableSetup()
+{
+	int: ADD       = 1;
+	int: Counter   = 0;
+	int: MAX_COUNT = 3;
+	
+	string: testVar = "Enter a number: ";
+	
+	Console.out.warning(testVar);
+	Console.input.integer( MAX_COUNT);
+	
+	Console.out.warning("Enter a string: ");
+	Console.input.string(testVar);
+}
+
+function StartCounter()
+{
+	Console.out.warning("Starting counter!");
+	run Count();
+}
+
+function Count()	
+{
+	Counter += ADD;
+	Console.out.warning(Counter);
+	if (MAX_COUNT > Counter) -> Count() : End();
+	Console.out.warning("This should not be reached!");
+}
+
+function End()
+{
+	Console.out.error("End of application -- PROGRAM!");
+}

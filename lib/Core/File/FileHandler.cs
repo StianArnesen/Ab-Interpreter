@@ -10,22 +10,14 @@ public class FileHandler
 
     public static string[] GetLinesFromFile(string filePath)
     {
-        try
+        if (!File.Exists(filePath))
         {
-            if (!File.Exists(filePath))
-            {
-                throw new FileNotFoundException("File not found.", filePath);
-            }
+            throw new FileNotFoundException("File not found.", filePath);
+        }
 
-            string[] lines = File.ReadAllLines(filePath);
-            
-            return lines;
-        }
-        catch (Exception ex)
-        {
-            DebugLog.Log($"File: '{filePath}' is empty!", DebugLog.LogType.ERROR);
-            throw new Exception($"File: '{filePath}' is empty!", ex);
-        }
+        string[] lines = File.ReadAllLines(filePath);
+        
+        return lines;
     }
     
 

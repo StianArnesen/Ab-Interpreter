@@ -13,7 +13,7 @@ namespace AInterpreter.Interpreter
         private List<Function> functionList = new List<Function>(); // Used to store all functions when interpreting.
         
         public Interpreter(FileInfo fileToInterpret, ProgramMemory programMemory)
-        {
+        {            
             DebugLog.Log($"---------------- Interpreting '{fileToInterpret.Name} ' -----------------", this);
 
             Stopwatch stopwatch = new Stopwatch();
@@ -24,9 +24,11 @@ namespace AInterpreter.Interpreter
             stopwatch.Stop();
             long elapsedTime = stopwatch.ElapsedMilliseconds;
             
+            DebugLog.AddEmptyLine();
             DebugLog.Log("---------------- Interpreting done! -----------------", this);
             DebugLog.Log($"              Interpreting took {elapsedTime} ms     ", this);
-            DebugLog.Log("---------------- Interpreting done! -----------------", this);
+            DebugLog.Log("------------------------------------------------------", this);
+            DebugLog.AddEmptyLine();
         }
 
         private void interpretFile(FileInfo fileToInterpret, ProgramMemory programMemory)
@@ -45,7 +47,7 @@ namespace AInterpreter.Interpreter
                 if(existingFunction.Name == function.Name)
                 {
                     DebugLog.Log($"Function with name {function.Name} already exists!", DebugLog.LogType.ERROR);
-                    throw new System.Exception($"Function with name {function.Name} already exists!");
+                    throw new Exception($"Function with name {function.Name} already exists!");
                 }
             }
             functionList.Add(function);
@@ -102,7 +104,7 @@ namespace AInterpreter.Interpreter
                 VariableInterpreter.interpretVariableSignature(programMemory, line);
             }
             else
-            {   // Assuming line is variable.
+            {   // Assuming line is variable if nothing else matches.
                 VariableInterpreter.interpretVariableSignature(programMemory, line);
             }
         }
@@ -110,7 +112,7 @@ namespace AInterpreter.Interpreter
         private void interpretConsoleSignature(ProgramMemory programMemory, string line)
         {
             DebugLog.Log($"Console command detected in line: {line}! Interpreting...", this);
-            Instruction instructionSet = ConsoleCommandsInterpreter.GetInstructionSet(programMemory, line);
+            Instruction instructionSet = ConsoleCommandsInterpreter.GetInstruction(programMemory, line);
             programMemory.AddInstructionToCurrentFunction(instructionSet);            
         }
 

@@ -18,7 +18,7 @@ namespace AInterpreter.Core.Runtime
         public Instruction(ProgramMemory program, Action instruction)
         {
             this.instruction = instruction;
-            this.LineNumber   = program.CurrentLineNumber;
+            this.LineNumber  = program.CurrentLineNumber;
         }
         
         public void Execute()

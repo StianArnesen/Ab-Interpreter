@@ -48,7 +48,7 @@ namespace AInterpreter.Interpreter
             string? result = this.str != null ? new string(this.str.Where(c => charactersToKeep.Contains(c)).ToArray()) : null;
             return result == null ? "" : result;
         }
-        public string FromStartToNextCharacter(char closingChar)
+        public string FromStartToNextCharacter(string closingChar)
         {
             int stringStart       = 0;
             int stringEnd         = this.str.IndexOf(closingChar) - stringStart;
@@ -74,7 +74,7 @@ namespace AInterpreter.Interpreter
             string stringToReturn = betweenindexes.Replace(" ", "");
             
             return stringToReturn;
-        }        
+        }
 
         public string RemoveWhiteSpace(int startIndex, int endIndex)
         {

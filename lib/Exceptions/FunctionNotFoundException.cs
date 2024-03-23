@@ -1,25 +1,13 @@
-using System;
-
 namespace AInterpreter.Exceptions
 {
-    public class FunctionNotFoundException : System.Exception
+    public class FunctionNotFoundException : AbException
     {
-        public FunctionNotFoundException()
-        {
+        public FunctionNotFoundException(string funcName) : base(funcName) 
+        { 
+            Message = $"Function not found: '{funcName}()'";
         }
+        public FunctionNotFoundException(string message, int lineNumber) : base(message, lineNumber) { }
 
-        //Override the default constructor with a custom error message 
-        public FunctionNotFoundException(string message) : base(message)
-        {
-            
-        }
-
-        /*public FunctionNotFoundException(string message) : base($"Function {message}() was not found in the function set.");
-        {
-        }*/
-
-        public FunctionNotFoundException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
+        public FunctionNotFoundException(string message, int lineNumber, Exception innerException) : base(message, lineNumber, innerException) { }
     }
 }

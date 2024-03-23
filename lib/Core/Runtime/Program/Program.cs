@@ -6,8 +6,7 @@ namespace AInterpreter.Core.Runtime
 {
     public class Program
     {
-        public bool IsRunning {get; protected set;} = true;   
-        
+        public bool IsRunning {get; protected set;} = true;
         public ProgramMemory ProgramMemory;
         public Program()
         {
@@ -27,10 +26,10 @@ namespace AInterpreter.Core.Runtime
                 return;
             }
             
-            Instruction? instruction = ProgramMemory.InstructionStack.Pop();
-            instruction.Execute();
+            Instruction? instruction = ProgramMemory.NextInstruction();
+            instruction?.Execute();
 
-            ProgramMemory.CurrentLineNumber = instruction.LineNumber;
+            ProgramMemory.CurrentLineNumber = (instruction == null)? ProgramMemory.CurrentLineNumber : instruction.LineNumber;
         }
        
     }
