@@ -1,10 +1,8 @@
-using AInterpreter.Core.Interpreter.Statements.Comparison;
-using AInterpreter.Core.Runtime;
-using AInterpreter.Core.Runtime.Commands;
-using AInterpreter.Exceptions;
-using AInterpreter.Signatures;
+using AInterpreter.lib.Core.Runtime.Memory.Instructions;
+using AInterpreter.lib.Core.Runtime.Memory.Variables;
+using AInterpreter.lib.Core.Runtime.Program;
 
-namespace AInterpreter.Core.Interpreter.Statements
+namespace AInterpreter.lib.Core.Interpreter.Statements.Comparison
 {
     class ComparisonInterpreter
     {

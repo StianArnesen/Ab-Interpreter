@@ -1,12 +1,8 @@
-using System.Text.RegularExpressions;
-using AInterpreter.Core.Interpreter.Statements;
-using AInterpreter.Core.Interpreter.Statements.Comparison;
-using AInterpreter.Core.Logger;
-using AInterpreter.Core.Signatures;
-using AInterpreter.Interpreter;
-using AInterpreter.Signatures;
+using AInterpreter.lib.Core.Interpreter.Statements.Comparison;
+using AInterpreter.lib.Core.Runtime.Program;
+using AInterpreter.lib.Core.Signatures;
 
-namespace AInterpreter.Core.Runtime.Commands
+namespace AInterpreter.lib.Core.Interpreter.Statements
 {
     public static class StatementInterpreter
     {

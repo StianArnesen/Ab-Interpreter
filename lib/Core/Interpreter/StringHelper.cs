@@ -1,4 +1,4 @@
-namespace AInterpreter.Interpreter
+namespace AInterpreter.lib.Core.Interpreter
 {
     class StringHelper
     {

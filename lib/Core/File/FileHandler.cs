@@ -1,5 +1,6 @@
-using System.Diagnostics;
-using AInterpreter.Core.Logger;
+using AInterpreter.lib.Core.Logger;
+
+namespace AInterpreter.lib.Core.File;
 
 public class FileHandler
 {
@@ -10,12 +11,12 @@ public class FileHandler
 
     public static string[] GetLinesFromFile(string filePath)
     {
-        if (!File.Exists(filePath))
+        if (!System.IO.File.Exists(filePath))
         {
             throw new FileNotFoundException("File not found.", filePath);
         }
 
-        string[] lines = File.ReadAllLines(filePath);
+        string[] lines = System.IO.File.ReadAllLines(filePath);
         
         return lines;
     }
@@ -45,13 +46,13 @@ public class FileHandler
             if(LogFilePath == null){
                 return;
             }
-            if (!File.Exists(LogFilePath))
+            if (!System.IO.File.Exists(LogFilePath))
             {
-                File.WriteAllText(LogFilePath, line);
+                System.IO.File.WriteAllText(LogFilePath, line);
             }
             else
             {
-                File.AppendAllText(LogFilePath, line);
+                System.IO.File.AppendAllText(LogFilePath, line);
             }
         }
         catch (Exception ex)

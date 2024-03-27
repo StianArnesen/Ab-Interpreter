@@ -1,8 +1,8 @@
 using System.Text.RegularExpressions;
-using AInterpreter.Core.Logger;
-using AInterpreter.Signatures;
+using AInterpreter.lib.Core.Logger;
+using AInterpreter.lib.Core.Signatures;
 
-namespace AInterpreter.Core.Interpreter.Statements.Comparison
+namespace AInterpreter.lib.Core.Interpreter.Statements.Comparison
 {
     /* ! All methods in this class was created with Chat GPT ! */
     public static class ComparisonOperatorExtension

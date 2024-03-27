@@ -1,7 +1,10 @@
-using AInterpreter.Core.Logger;
-using AInterpreter.Exceptions;
+using AInterpreter.lib.Core.Logger;
+using AInterpreter.lib.Core.Runtime.Memory.Functions;
+using AInterpreter.lib.Core.Runtime.Memory.Instructions;
+using AInterpreter.lib.Core.Runtime.Memory.Variables;
+using AInterpreter.lib.Exceptions;
 
-namespace AInterpreter.Core.Runtime
+namespace AInterpreter.lib.Core.Runtime.Program
 {
     public class ProgramMemory
     {

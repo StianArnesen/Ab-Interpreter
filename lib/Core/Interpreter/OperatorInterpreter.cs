@@ -1,9 +1,10 @@
-using AInterpreter.Core.Signatures;
-using AInterpreter.Core.Runtime;
-using AInterpreter.Core.Logger;
-using AInterpreter.Core.Runtime.Commands;
+using AInterpreter.lib.Core.Logger;
+using AInterpreter.lib.Core.Runtime.Commands;
+using AInterpreter.lib.Core.Runtime.Memory.Instructions;
+using AInterpreter.lib.Core.Runtime.Program;
+using AInterpreter.lib.Core.Signatures;
 
-namespace AInterpreter.Interpreter
+namespace AInterpreter.lib.Core.Interpreter
 {
     static class OperatorInterpreter
     {

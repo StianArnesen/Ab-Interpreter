@@ -1,4 +1,4 @@
-namespace AInterpreter.Core.Signatures
+namespace AInterpreter.lib.Core.Signatures
 {
     public static class StatementSignatures
     {

@@ -1,11 +1,13 @@
-using AInterpreter.Core;
-using AInterpreter.Core.Runtime;
-using AInterpreter.Core.Logger;
-using AInterpreter.Core.Signatures;
-using AInterpreter.Core.Runtime.Commands;
 using System.Diagnostics;
+using AInterpreter.lib.Core.File;
+using AInterpreter.lib.Core.Interpreter.Statements;
+using AInterpreter.lib.Core.Logger;
+using AInterpreter.lib.Core.Runtime.Memory.Functions;
+using AInterpreter.lib.Core.Runtime.Memory.Instructions;
+using AInterpreter.lib.Core.Runtime.Program;
+using AInterpreter.lib.Core.Signatures;
 
-namespace AInterpreter.Interpreter
+namespace AInterpreter.lib.Core.Interpreter
 {
     class Interpreter
     {

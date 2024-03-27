@@ -1,4 +1,4 @@
-namespace AInterpreter.Exceptions
+namespace AInterpreter.lib.Exceptions
 {
     public class AbException : Exception
     {

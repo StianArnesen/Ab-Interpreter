@@ -1,4 +1,4 @@
-namespace AInterpreter.Core.Interpreter.Statements.Comparison
+namespace AInterpreter.lib.Core.Interpreter.Statements.Comparison
 {
     /* ! This enum was created by Chat GPT ! */
   

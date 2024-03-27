@@ -1,8 +1,7 @@
-using AInterpreter.Core.Logger;
-using AInterpreter.Core.Signatures;
-using AInterpreter.Exceptions;
+using AInterpreter.lib.Core.Runtime.Memory.Instructions;
+using AInterpreter.lib.Core.Signatures;
 
-namespace AInterpreter.Core.Runtime
+namespace AInterpreter.lib.Core.Runtime.Program
 {
     public class Program
     {
