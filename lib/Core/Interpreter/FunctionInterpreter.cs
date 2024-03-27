@@ -59,10 +59,14 @@ namespace AInterpreter.lib.Core.Interpreter
 
         private static void AddParametersToFunctionDefinition(ProgramMemory programMemory, string line, Function function)
         {
+            // Fra hvordan jeg leser denne er det ikke mulig å bruke resultatet av en funksjon i parameterlisten
+            // f.eks sqrt(pow(2,2))
             string[] parametersString = line.Split("(")[1].Split(")")[0].Split(",");
             
             foreach (string parameterName in parametersString)
             {
+                // Ganske løs sjekk på gyldigheten av parameternavn, symboler og greier kan kanskje fungere? :P
+                // functionName(/-+, --)
                 if(parameterName.Trim().Equals(""))
                 {
                     continue;

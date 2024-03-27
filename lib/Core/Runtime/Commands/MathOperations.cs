@@ -4,6 +4,7 @@ namespace AInterpreter.lib.Core.Runtime.Commands
 {
     public static class MathOperations
     {
+        // Går ikke an å legge sammen tre verdier? 1 + 1 + 1 f.eks?
         public static Action Add(ProgramMemory programMemory, string leftHandVariableName, string rightHandVariableName)
         {
             return new Action(() => 
