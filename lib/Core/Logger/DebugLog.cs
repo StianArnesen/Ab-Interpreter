@@ -1,5 +1,7 @@
 
-namespace AInterpreter.Core.Logger
+using AInterpreter.lib.Core.File;
+
+namespace AInterpreter.lib.Core.Logger
 {
     public static class DebugLog
     {

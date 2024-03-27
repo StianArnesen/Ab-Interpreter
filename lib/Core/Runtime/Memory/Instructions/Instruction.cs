@@ -4,11 +4,11 @@
     *
 */
 
-using System.Diagnostics;
 using System.Reflection;
-using AInterpreter.Core.Logger;
+using AInterpreter.lib.Core.Logger;
+using AInterpreter.lib.Core.Runtime.Program;
 
-namespace AInterpreter.Core.Runtime
+namespace AInterpreter.lib.Core.Runtime.Memory.Instructions
 {   
     public class Instruction
     {

@@ -1,4 +1,4 @@
-namespace AInterpreter.Core.Runtime
+namespace AInterpreter.lib.Core.Runtime.Commands
 {
     public static class ConsoleCommands
     {

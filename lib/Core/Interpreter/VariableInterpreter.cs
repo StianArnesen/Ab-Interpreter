@@ -1,10 +1,10 @@
-using AInterpreter.Core.Runtime;
-using AInterpreter.Core.Logger;
-using AInterpreter.Core.Signatures;
-using AInterpreter.Exceptions;
-using System.Collections.Generic;
+using AInterpreter.lib.Core.Logger;
+using AInterpreter.lib.Core.Runtime.Memory.Instructions;
+using AInterpreter.lib.Core.Runtime.Program;
+using AInterpreter.lib.Core.Signatures;
+using AInterpreter.lib.Exceptions;
 
-namespace AInterpreter.Interpreter
+namespace AInterpreter.lib.Core.Interpreter
 {
     public class VariableInterpreter
     {

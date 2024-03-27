@@ -1,10 +1,11 @@
-using AInterpreter.Core;
-using AInterpreter.Core.Logger;
-using AInterpreter.Core.Runtime;
-using AInterpreter.Core.Runtime.Commands;
-using AInterpreter.Core.Signatures;
+using AInterpreter.lib.Core.Logger;
+using AInterpreter.lib.Core.Runtime.Memory.Functions;
+using AInterpreter.lib.Core.Runtime.Memory.Instructions;
+using AInterpreter.lib.Core.Runtime.Memory.Variables;
+using AInterpreter.lib.Core.Runtime.Program;
+using AInterpreter.lib.Core.Signatures;
 
-namespace AInterpreter.Interpreter
+namespace AInterpreter.lib.Core.Interpreter
 {
     class FunctionInterpreter
     {  

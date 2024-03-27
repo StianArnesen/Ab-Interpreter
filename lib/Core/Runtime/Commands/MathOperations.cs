@@ -1,4 +1,6 @@
-namespace AInterpreter.Core.Runtime.Commands
+using AInterpreter.lib.Core.Runtime.Program;
+
+namespace AInterpreter.lib.Core.Runtime.Commands
 {
     public static class MathOperations
     {

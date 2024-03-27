@@ -1,4 +1,4 @@
-namespace AInterpreter.Core.Interpreter.Statements.Comparison
+namespace AInterpreter.lib.Core.Interpreter.Statements.Comparison
 {
     public class StringValueAttribute : Attribute
     {

@@ -1,4 +1,4 @@
-namespace AInterpreter.Signatures
+namespace AInterpreter.lib.Core.Signatures
 {
     public class ComparisonSignatures
     {

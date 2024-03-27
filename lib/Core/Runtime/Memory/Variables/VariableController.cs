@@ -1,8 +1,7 @@
-using System.Diagnostics;
-using AInterpreter.Core.Logger;
-using AInterpreter.Exceptions;
+using AInterpreter.lib.Core.Logger;
+using AInterpreter.lib.Exceptions;
 
-namespace AInterpreter.Core.Runtime
+namespace AInterpreter.lib.Core.Runtime.Memory.Variables
 {
     /*
 

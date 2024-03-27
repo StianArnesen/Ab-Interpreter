@@ -1,7 +1,6 @@
-using AInterpreter.Core.Interpreter.Statements.Comparison;
-using AInterpreter.Signatures;
+using AInterpreter.lib.Core.Interpreter.Statements.Comparison;
 
-namespace AInterpreter.Core.Runtime
+namespace AInterpreter.lib.Core.Runtime.Memory.Variables
 {
     public enum VariableType
         {

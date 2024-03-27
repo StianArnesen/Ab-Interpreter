@@ -1,4 +1,4 @@
-namespace AInterpreter.Core.Configuration
+namespace AInterpreter.lib.Core.Configuration
 {
     public class ConsoleConfiguration
     {

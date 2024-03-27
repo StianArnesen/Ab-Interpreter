@@ -1,10 +1,11 @@
-using AInterpreter.Core.Signatures;
-using AInterpreter.Core.Runtime.Commands;
-using AInterpreter.Exceptions;
-using AInterpreter.Core.Runtime;
-using AInterpreter.Core.Configuration;
+using AInterpreter.lib.Core.Configuration;
+using AInterpreter.lib.Core.Runtime.Commands;
+using AInterpreter.lib.Core.Runtime.Memory.Instructions;
+using AInterpreter.lib.Core.Runtime.Program;
+using AInterpreter.lib.Core.Signatures;
+using AInterpreter.lib.Exceptions;
 
-namespace AInterpreter.Interpreter
+namespace AInterpreter.lib.Core.Interpreter
 {
     static class ConsoleCommandsInterpreter
     {
