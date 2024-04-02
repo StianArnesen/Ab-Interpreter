@@ -40,9 +40,10 @@ string: myVar = "This text is white";
 Console.out.info(myVar);
 </pre>
 
-### Example program utilising all implemented functionality:
+### Example program:
 
 <pre>
+```js
 // Adding the entry point.
 function Main()
 {
@@ -59,7 +60,7 @@ function VariableSetup()
 	string: testVar = "Enter a number: ";
 	
 	Console.out.warning(testVar);
-	Console.input.integer( MAX_COUNT);
+	Console.input.integer(MAX_COUNT);
 	
 	Console.out.warning("Enter a string: ");
 	Console.input.string(testVar);
@@ -76,12 +77,11 @@ function Count()
 	Counter += ADD;
 	Console.out.warning(Counter);
 	if (MAX_COUNT > Counter) -> Count() : End();
-	Console.out.warning("This should not be reached!");
 }
 
 function End()
 {
-	Console.out.error("End of application -- PROGRAM!");
+	Console.out.error("End of application!");
 }
-
+```
 </pre>
