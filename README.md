@@ -42,7 +42,6 @@ Console.out.info(myVar);
 
 ### Example program:
 
-<pre>
 ```js
 // Adding the entry point.
 function Main()
@@ -84,4 +83,3 @@ function End()
 	Console.out.error("End of application!");
 }
 ```
-</pre>
