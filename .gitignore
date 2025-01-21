@@ -1,6 +1,6 @@
 file_to_ignore.txt
 AInterpreter.sln
-AInterpreter.csproj
+*.csproj
 
 # Ignore entire directories
 ignored_directory/
