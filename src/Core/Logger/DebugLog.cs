@@ -12,14 +12,14 @@ namespace AInterpreter.lib.Core.Logger
             INFO
         }
 
-        public static bool IsConsoleOutputEnabled {get; set;} = false;
-        public static bool IsFileLoggerEnabled {get; set;} = false;
+        public static bool IsConsoleOutputEnabled { get; set; } = false;
+        public static bool IsFileLoggerEnabled { get; set; } = false;
 
         public static void Log(string message, LogType logType, object source)
         {
             string currentTime = DateTime.Now.ToString("dd.MM mm:ss");
             string finalMessageToPrint = $"[{logType}] [@{source}]: {message}";
-            
+
             switch (logType)
             {
                 case LogType.ERROR:
@@ -35,29 +35,29 @@ namespace AInterpreter.lib.Core.Logger
                     Console.ForegroundColor = ConsoleColor.White;
                     break;
             }
-            
-            if(IsConsoleOutputEnabled)
+
+            if (IsConsoleOutputEnabled)
             {
                 Console.WriteLine($"[{logType}]: {finalMessageToPrint}");
             }
-            if(IsFileLoggerEnabled)
+            if (IsFileLoggerEnabled)
             {
-                FileHandler.WriteToLog($"\n[{currentTime}]:      {finalMessageToPrint}");;
-            }            
+                FileHandler.WriteToLog($"\n[{currentTime}]:      {finalMessageToPrint}"); ;
+            }
         }
 
         public static void AddEmptyLine()
         {
-            if(IsConsoleOutputEnabled)
+            if (IsConsoleOutputEnabled)
             {
                 Console.WriteLine();
             }
-            if(IsFileLoggerEnabled)
+            if (IsFileLoggerEnabled)
             {
-                FileHandler.WriteToLog(" ");;
-            }  
+                FileHandler.WriteToLog(" "); ;
+            }
         }
-        
+
         public static void Log(string message, object source)
         {
             Log(message, LogType.INFO, source);

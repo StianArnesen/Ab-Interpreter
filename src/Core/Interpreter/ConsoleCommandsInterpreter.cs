@@ -11,7 +11,7 @@ namespace AInterpreter.lib.Core.Interpreter
     {
         /*
             ConsoleCommandsInterpreter.GetInstructionSet():
-                Only run if the current line of code starts with ConsoleSignatures.CONSOLE_COMMAND_STARTS_WITH_SIGNATURE;
+                Only run if the current line of code starts with ConsoleSignatures.CONSOLE_COMMAND_CLASS;
         */
 
         public static Instruction GetInstruction(ProgramMemory program, string line)
@@ -79,7 +79,7 @@ namespace AInterpreter.lib.Core.Interpreter
             {
                 case ConsoleSignatures.CONSOLE_COMMAND_OUTPUT_INFO:
                 {
-                    return getInstructionForOutput(program, line, ConsoleConfiguration.CONSOLE_COLOR_WARNING);
+                    return getInstructionForOutput(program, line, ConsoleConfiguration.CONSOLE_COLOR_INFO);
                 }
                 case ConsoleSignatures.CONSOLE_COMMAND_OUTPUT_WARNING:
                 {

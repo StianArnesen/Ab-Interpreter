@@ -4,10 +4,10 @@ using AInterpreter.lib.Core.Signatures;
 
 namespace AInterpreter.lib.Core.Interpreter.Statements.Comparison
 {
-    /* ! All methods in this class was created with Chat GPT ! */
+    /* ! All methods in this class were created with Chat GPT ! */
     public static class ComparisonOperatorExtension
     {
-        public static string GetStringRepresentation(this ComparisonOperator? comparisonOperator)
+        public static string? GetStringRepresentation(this ComparisonOperator? comparisonOperator)
         {
             var type = typeof(ComparisonOperator);
             var memInfo = type.GetMember(comparisonOperator.ToString());
@@ -42,5 +42,5 @@ namespace AInterpreter.lib.Core.Interpreter.Statements.Comparison
             }
         }
     }
-    
+
 }

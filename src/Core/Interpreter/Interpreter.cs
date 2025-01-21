@@ -89,7 +89,7 @@ namespace AInterpreter.lib.Core.Interpreter
             {
                 /* 
                     The function definition has already been handled in the constructor. 
-                    Now we just need to set the current function name so that we can add instructions to it.
+                    Now we just need to set/update the current function name so that we can add instructions to it.
                 */
                 programMemory.SetCurrentFunctionName(FunctionInterpreter.GetFunctionName(line, FunctionSignatures.FUNCTION_DEFINITION_SIGNATURE));
             }

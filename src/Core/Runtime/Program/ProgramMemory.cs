@@ -38,7 +38,7 @@ namespace AInterpreter.lib.Core.Runtime.Program
             DebugLog.Log($"Setting current function to: {name}", this);
             CurrentFunctionName = name;
         }
-        private bool doesFunctionExist(string name)
+        private bool DoesFunctionExist(string name)
         {
             foreach (Function func in functionList)
             {
@@ -57,7 +57,7 @@ namespace AInterpreter.lib.Core.Runtime.Program
 
         public void AddFunction(Function function)
         {
-            if(doesFunctionExist(function.Name))
+            if(DoesFunctionExist(function.Name))
             {
                 DebugLog.Log($"Function {function.Name}() already exists!", DebugLog.LogType.ERROR);
                 return;
