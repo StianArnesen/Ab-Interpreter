@@ -12,19 +12,19 @@ namespace AInterpreter.lib.Core.Runtime.Program
         public VariableController VariableController = new VariableController();
         public Stack<Instruction> InstructionStack = new Stack<Instruction>(); // Used to store functions that are currently being executed.'
 
-        public int CurrentLineNumber {get; set;} = 1;
+        public int CurrentLineNumber { get; set; } = 1;
         public bool IsFirstTimeRunning = true;
-        public bool IsEndOfApplication {get; private set;} = false;
+        public bool IsEndOfApplication { get; private set; } = false;
         private string CurrentFunctionName = "";
 
         public ProgramMemory()
         {
-            
+
         }
 
         public Instruction? NextInstruction()
         {
-            if(InstructionStack.Count < 1)
+            if (InstructionStack.Count < 1)
             {
                 DebugLog.Log("No more instructions. Ending application.", DebugLog.LogType.WARNING, this);
                 IsEndOfApplication = true;
@@ -42,14 +42,14 @@ namespace AInterpreter.lib.Core.Runtime.Program
         {
             foreach (Function func in functionList)
             {
-                if(func.Name.CompareTo(name) == 0)
+                if (func.Name.CompareTo(name) == 0)
                 {
                     return true;
                 }
             }
             return false;
         }
-        
+
         public Function? GetCurrentFunction()
         {
             return GetFunctionByName(CurrentFunctionName);
@@ -57,7 +57,7 @@ namespace AInterpreter.lib.Core.Runtime.Program
 
         public void AddFunction(Function function)
         {
-            if(DoesFunctionExist(function.Name))
+            if (DoesFunctionExist(function.Name))
             {
                 DebugLog.Log($"Function {function.Name}() already exists!", DebugLog.LogType.ERROR);
                 return;
@@ -66,17 +66,17 @@ namespace AInterpreter.lib.Core.Runtime.Program
             this.CurrentFunctionName = function.Name;
             this.functionList.Add(function);
         }
-        
+
         public Function GetFunctionByName(string name)
         {
-            if(functionList.Count < 1)
+            if (functionList.Count < 1)
             {
                 DebugLog.Log("Could not find function! FunctionList is empty!", DebugLog.LogType.ERROR);
                 throw new EndOfQueueException("End of application", this);
             }
             foreach (Function func in functionList)
             {
-                if(func.Name.CompareTo(name) == 0)
+                if (func.Name.CompareTo(name) == 0)
                 {
                     return func;
                 }
@@ -87,14 +87,14 @@ namespace AInterpreter.lib.Core.Runtime.Program
 
         public bool AddInstructionToCurrentFunction(Instruction? instruction)
         {
-            if(instruction == null)
+            if (instruction == null)
             {
                 DebugLog.Log("Could not add new instruction. Instruction is null!", DebugLog.LogType.ERROR, this);
                 return false;
             }
             Function? currentFunction = GetCurrentFunction();
-            
-            if(currentFunction == null)
+
+            if (currentFunction == null)
             {
                 DebugLog.Log("Could not add new instruction. No active function!", DebugLog.LogType.ERROR, this);
                 return false;
@@ -103,38 +103,38 @@ namespace AInterpreter.lib.Core.Runtime.Program
             return true;
         }
 
-        public void addInstructionsFromFunctionToExecutionStack(Function? function)
+        public void AddInstructionsFromFunctionToExecutionStack(Function? function)
         {
             List<Instruction> instructions = function.GetInstructions();
-            foreach(Instruction instruction in instructions)
+            foreach (Instruction instruction in instructions)
             {
                 InstructionStack.Push(instruction);
                 DebugLog.Log($"Added instruction to execution stack: {instruction.GetInstructionInfo()}", this);
             }
-            if(instructions == null || instructions.Count < 1)
+            if (instructions == null || instructions.Count < 1)
             {
                 DebugLog.Log($"No instructions found for function: {function.Name}()", this);
             }
         }
-        public void addInstructionsFromFunctionToExecutionStack(string functionName)
+        public void AddInstructionsFromFunctionToExecutionStack(string functionName)
         {
             DebugLog.Log($"Adding instructions from function: {functionName}()", this);
             Function? function = GetFunctionByName(functionName);
-            addInstructionsFromFunctionToExecutionStack(function);
+            AddInstructionsFromFunctionToExecutionStack(function);
         }
 
 
         public void AddFunctionToExecutionStack(Function function)
         {
-            addInstructionsFromFunctionToExecutionStack(function);
+            AddInstructionsFromFunctionToExecutionStack(function);
             DebugLog.Log($"Added function {function.Name}(); to execution stack!", this);
         }
-        
+
         public void AddFunctionToExecutionStack(string functionName)
         {
             Function function = GetFunctionByName(functionName);
             AddFunctionToExecutionStack(function);
         }
-        
+
     }
 }
