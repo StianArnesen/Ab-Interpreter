@@ -1,5 +1,6 @@
 AInterpreter.sln
 *.csproj
+*.sln
 
 # Ignore entire directories
 ignored_directory/
