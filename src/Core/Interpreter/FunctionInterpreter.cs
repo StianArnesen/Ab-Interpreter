@@ -8,7 +8,7 @@ using AInterpreter.lib.Core.Signatures;
 namespace AInterpreter.lib.Core.Interpreter
 {
     class FunctionInterpreter
-    {  
+    {
         /*            
             This method is executed once when the program starts. It iterates through all lines and interprets all function definitions.
             So that the program knows which user-defined functions are available when execution begins.
@@ -17,13 +17,13 @@ namespace AInterpreter.lib.Core.Interpreter
         {
             foreach (string line in lines)
             {
-                string trimmedLine = line.Trim();   
-                if(line.StartsWith(FunctionSignatures.FUNCTION_DEFINITION_SIGNATURE))
+                string trimmedLine = line.Trim();
+                if (line.StartsWith(FunctionSignatures.FUNCTION_DEFINITION_SIGNATURE))
                 {
                     InterpretDefinitionSignature(programMemory, trimmedLine);
                 }
             }
-            
+
         }
         /*
             Interpret an execution signature and add the function to the ProgramMemory.
@@ -38,22 +38,23 @@ namespace AInterpreter.lib.Core.Interpreter
         public static void InterpretExecutionSignature(ProgramMemory programMemory, string line)
         {
             string functionName = GetFunctionName(line, FunctionSignatures.FUNCTION_EXECUTION_SIGNATURE);
-            
-            programMemory.AddInstructionToCurrentFunction(new Instruction(programMemory, () => {
-                programMemory.addInstructionsFromFunctionToExecutionStack(functionName);
+
+            programMemory.AddInstructionToCurrentFunction(new Instruction(programMemory, () =>
+            {
+                programMemory.AddInstructionsFromFunctionToExecutionStack(functionName);
             }));
         }
-        
+
         public static void InterpretReturnSignature(ProgramMemory programMemory, string line)
         {
-           // TODO: Implement return signature.
-           throw new NotImplementedException("Return signature not implemented yet and should not be needed.");
+            // TODO: Implement return signature.
+            throw new NotImplementedException("Return signature not implemented yet and should not be needed.");
         }
 
         private static Function GetFunctionToCreate(string line)
         {
             string functionName = GetFunctionName(line, FunctionSignatures.FUNCTION_DEFINITION_SIGNATURE);
-            
+
             return new Function(functionName);
         }
 
@@ -62,12 +63,12 @@ namespace AInterpreter.lib.Core.Interpreter
             // Fra hvordan jeg leser denne er det ikke mulig å bruke resultatet av en funksjon i parameterlisten
             // f.eks sqrt(pow(2,2))
             string[] parametersString = line.Split("(")[1].Split(")")[0].Split(",");
-            
+
             foreach (string parameterName in parametersString)
             {
                 // Ganske løs sjekk på gyldigheten av parameternavn, symboler og greier kan kanskje fungere? :P
                 // functionName(/-+, --)
-                if(parameterName.Trim().Equals(""))
+                if (parameterName.Trim().Equals(""))
                 {
                     continue;
                 }
@@ -75,18 +76,20 @@ namespace AInterpreter.lib.Core.Interpreter
                 programMemory.VariableController.AddVariable(parameterName, "str_null");
             }
         }
-        
-        private static Instruction getInstructionToSetParameterToValue(ProgramMemory program, string parameterName, object value, Function function){
-            return new Instruction(program, () => {
-                    Variable parameter = function.GetParameter(0);
-                    function.SetParameter(parameterName, parameter);
-                });
+
+        private static Instruction getInstructionToSetParameterToValue(ProgramMemory program, string parameterName, object value, Function function)
+        {
+            return new Instruction(program, () =>
+            {
+                Variable parameter = function.GetParameter(0);
+                function.SetParameter(parameterName, parameter);
+            });
         }
 
         public static string GetFunctionName(string line, string preSignature)
         {
             string functionName = new StringHelper(line).GetSubstringBetweenIndentifiers(preSignature, "(");
-                    
+
             return functionName;
         }
 
